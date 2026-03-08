@@ -2088,7 +2088,7 @@ namespace isobus
 		else
 		{
 			buffer.push_back(0);
-			LOG_WARNING("[AUX-N] Sending preferred assignemnts, but no auxiliary assignment load callback registered.");
+			LOG_WARNING("[AUX-N] Sending preferred assignments, but no auxiliary assignment load callback registered.");
 		}
 		if (buffer.size() < CAN_DATA_LENGTH)
 		{
@@ -2836,7 +2836,7 @@ namespace isobus
 										else
 										{
 											hasError = true;
-											LOG_WARNING("[AUX-N]: Unable to to handle assignment due to unsupported function type: " + isobus::to_string(functionType));
+											LOG_WARNING("[AUX-N]: Unable to handle assignment due to unsupported function type: " + isobus::to_string(functionType));
 										}
 									}
 									else
