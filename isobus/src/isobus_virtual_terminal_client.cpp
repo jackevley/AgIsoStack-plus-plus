@@ -3227,9 +3227,9 @@ namespace isobus
 									LOG_ERROR("[VT]: Error in end of object pool message." +
 									          std::string("Faulty Object ") +
 									          isobus::object_id_to_string(objectIDOfFaultyObject) +
-									          std::string(" Faulty Object Parent ") +
+									          std::string(", Faulty Object Parent ") +
 									          isobus::object_id_to_string(parentObjectIDOfFaultyObject) +
-									          std::string(" Pool errors: "));
+									          std::string(", Pool errors: "));
 									print_objectpool_error(errorCodes, objectPoolErrorBitmask);
 								}
 							}
