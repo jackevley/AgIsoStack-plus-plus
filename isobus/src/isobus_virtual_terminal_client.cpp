@@ -3376,6 +3376,10 @@ namespace isobus
 	void VirtualTerminalClient::print_objectpool_error(std::uint8_t errorCodes, std::uint8_t objectPoolErrorCodes)
 	{
 		LOG_ERROR("Error(s) occured during the IOP parsing process:");
+		if (errorCodes)
+		{
+			LOG_ERROR("Error code: ");
+		}
 		if (errorCodes & 0x2)
 		{
 			LOG_ERROR(" - VT ran out of memory during transfer");
@@ -3389,6 +3393,11 @@ namespace isobus
 		if (errorCodes & 0xEC)
 		{
 			LOG_ERROR(" - Reserved bits are set in the Error codes byte: 0x%02X", errorCodes & 0xEC);
+		}
+
+		if (objectPoolErrorCodes)
+		{
+			LOG_ERROR("Object pool error code: ");
 		}
 
 		if (objectPoolErrorCodes & 0x1)
