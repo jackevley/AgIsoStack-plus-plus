@@ -3376,7 +3376,7 @@ namespace isobus
 	void VirtualTerminalClient::print_objectpool_error(std::uint8_t errorCodes, std::uint8_t objectPoolErrorCodes)
 	{
 		LOG_ERROR("Error(s) occured during the IOP parsing process:");
-		if (0 != errorCodes)
+		if (errorCodes)
 		{
 			LOG_ERROR("Error code: ");
 		}
@@ -3395,7 +3395,7 @@ namespace isobus
 			LOG_ERROR(" - Reserved bits are set in the Error codes byte: 0x%02X", errorCodes & 0xEC);
 		}
 
-		if (0 != objectPoolErrorCodes)
+		if (objectPoolErrorCodes)
 		{
 			LOG_ERROR("Object pool error code: ");
 		}
