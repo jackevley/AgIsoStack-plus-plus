@@ -65,5 +65,10 @@ CMakeFiles
 *.orig
 *.rej
 
+<<<<<<< HEAD
 # AI
 .claude
+=======
+*.cmake
+!cmake/*.cmake
+>>>>>>> 8fd1ea1962574724e0b287a8ac921c86420eae75
