@@ -86,6 +86,31 @@ namespace isobus
 		return success;
 	}
 
+	bool VirtualTerminalClientUpdateHelper::set_string_value(std::uint16_t objectId, const std::string &value)
+	{
+		if (nullptr == client)
+		{
+			LOG_ERROR("[VTStateHelper] set_string_value: client is nullptr");
+			return false;
+		}
+		if (stringValueStates.find(objectId) == stringValueStates.end())
+		{
+			LOG_WARNING("[VTStateHelper] set_string_value: objectId %hu not tracked", objectId);
+			return false;
+		}
+		if (stringValueStates.at(objectId) == value)
+		{
+			return true;
+		}
+
+		bool success = vtClient->send_change_string_value(objectId, value);
+		if (success)
+		{
+			stringValueStates[objectId] = value;
+		}
+		return success;
+	}
+
 	bool VirtualTerminalClientUpdateHelper::increase_numeric_value(std::uint16_t object_id, std::uint32_t step)
 	{
 		return set_numeric_value(object_id, get_numeric_value(object_id) + step);

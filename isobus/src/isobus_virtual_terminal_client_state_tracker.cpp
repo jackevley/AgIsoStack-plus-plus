@@ -108,6 +108,40 @@ namespace isobus
 		return numericValueStates.at(objectId);
 	}
 
+	void VirtualTerminalClientStateTracker::add_tracked_string_value(std::uint16_t objectId, std::string initialValue)
+	{
+		if (stringValueStates.find(objectId) != stringValueStates.end())
+		{
+			LOG_WARNING("[VTStateHelper] add_tracked_string_value: objectId '%lu' already tracked", objectId);
+			return;
+		}
+
+		stringValueStates[objectId] = std::move(initialValue);
+	}
+
+	void VirtualTerminalClientStateTracker::remove_tracked_string_value(std::uint16_t objectId)
+	{
+		if (stringValueStates.find(objectId) == stringValueStates.end())
+		{
+			LOG_WARNING("[VTStateHelper] remove_tracked_string_value: objectId '%lu' was not tracked", objectId);
+			return;
+		}
+
+		stringValueStates.erase(objectId);
+	}
+
+	const std::string &VirtualTerminalClientStateTracker::get_string_value(std::uint16_t objectId) const
+	{
+		if (stringValueStates.find(objectId) == stringValueStates.end())
+		{
+			LOG_WARNING("[VTStateHelper] get_string_value: objectId '%lu' not tracked", objectId);
+			static const std::string emptyString;
+			return emptyString;
+		}
+
+		return stringValueStates.at(objectId);
+	}
+
 	std::uint16_t VirtualTerminalClientStateTracker::get_active_mask() const
 	{
 		return activeDataOrAlarmMask;
