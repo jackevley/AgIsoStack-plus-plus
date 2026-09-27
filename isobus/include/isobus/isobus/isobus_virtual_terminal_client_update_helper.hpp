@@ -38,6 +38,12 @@ namespace isobus
 		/// @return True if the value was set successfully, false otherwise.
 		bool set_numeric_value(std::uint16_t objectId, std::uint32_t value);
 
+		/// @brief Sets the string value of a tracked object.
+		/// @param[in] objectId The object id of the string value to set.
+		/// @param[in] value The string value to set.
+		/// @return True if the value was set successfully, false otherwise.
+		bool set_string_value(std::uint16_t objectId, const std::string &value);
+
 		/// @brief Increases the numeric value of a tracked object.
 		/// @param[in] objectId The object id of the numeric value to increase.
 		/// @param[in] step The step size to increase the numeric value with.

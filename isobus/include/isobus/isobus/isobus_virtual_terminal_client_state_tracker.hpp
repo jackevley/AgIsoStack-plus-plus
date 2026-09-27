@@ -16,6 +16,7 @@
 
 #include <deque>
 #include <map>
+#include <string>
 #include <vector>
 
 namespace isobus
@@ -68,6 +69,20 @@ namespace isobus
 		/// @param[in] objectId The object id of the numeric value to get.
 		/// @return The current numeric value of the tracked object.
 		std::uint32_t get_numeric_value(std::uint16_t objectId) const;
+
+		/// @brief Adds a string value to track.
+		/// @param[in] objectId The object id of the string value to track.
+		/// @param[in] initialValue The initial value of the string to track.
+		void add_tracked_string_value(std::uint16_t objectId, std::string initialValue = "");
+
+		/// @brief Removes a string value from tracking.
+		/// @param[in] objectId The object id of the string value to remove from tracking.
+		void remove_tracked_string_value(std::uint16_t objectId);
+
+		/// @brief Gets the current string value of a tracked object.
+		/// @param[in] objectId The object id of the string value to get.
+		/// @return The current string value of the tracked object.
+		const std::string &get_string_value(std::uint16_t objectId) const;
 
 		/// @brief Get the data/alarm mask currently active on the server for this client. It may not be displayed if the working set is not active.
 		/// @return The data/alarm mask currently active on the server for this client.
@@ -149,7 +164,7 @@ namespace isobus
 		//! TODO: std::map<std::uint16_t, std::pair<std::uint16_t, std::uint16_t>> sizeStates; ///< Holds the 'size (width,height)' state of tracked objects.
 		//! TODO: std::map<std::uint16_t, std::uint8_t> backgroundColourStates; ///< Holds the 'background colour' state of tracked objects.
 		std::map<std::uint16_t, std::uint32_t> numericValueStates; ///< Holds the 'numeric value' state of tracked objects.
-		//! TODO: std::map<std::uint16_t, std::string> stringValueStates; ///< Holds the 'string value' state of tracked objects.
+		std::map<std::uint16_t, std::string> stringValueStates; ///< Holds the 'string value' state of tracked objects.
 		//! TODO: std::map<std::uint16_t, std::uint8_t> endPointStates; ///< Holds the 'end point' state of tracked objects.
 		//! TODO: add font attribute state
 		//! TODO: add line attribute state
